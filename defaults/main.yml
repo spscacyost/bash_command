@@ -1,3 +1,2 @@
 dir: '/'
 single_node: false
-output_var: "output"

@@ -1,6 +1,7 @@
 ---
 
-- name: run {{command}}
-  shell: bash -lc '{{ command }}' chdir={{ dir }}
-  register: "{{ouput_var}}"
+- name: run {{item}}
+  shell: bash -lc '{{ item }}' chdir={{ item.dir|default(dir) }}
+  register: output
   when: (not single_node | bool) or ((single_node | bool) and inventory_hostname == play_hosts[0])
+  with_items: commands
